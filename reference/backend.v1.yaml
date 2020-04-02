@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  title: backend
+  version: '2.0'
+  contact:
+    name: kokoa
+    url: 'https://support.iachara.com/'
+    email: admin@iachara.com
+  termsOfService: 'https://iachara.com/tos.html'
+servers:
+  - url: 'http://localhost:3000/api/v2'
+paths:
+  /user/register:
+    post:
+      summary: ''
+      operationId: post-user-register
+      responses:
+        '200':
+          description: OK
+      description: ユーザ登録
+  /user/auth:
+    post:
+      summary: ''
+      operationId: post-user-auth
+      responses:
+        '200':
+          description: OK
+components:
+  schemas: {}

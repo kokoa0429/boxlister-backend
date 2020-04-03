@@ -7,6 +7,7 @@ info:
     url: 'https://support.iachara.com/'
     email: admin@iachara.com
   termsOfService: 'https://iachara.com/tos.html'
+  description: iachara backend
 servers:
   - url: 'http://localhost:3000/api/v2'
 paths:
@@ -98,6 +99,8 @@ paths:
                   returnChar:
                     type: object
       description: キャラ保存
+      tags:
+        - chara
     delete:
       summary: ''
       operationId: delete-chara-id
@@ -114,6 +117,8 @@ paths:
                   id:
                     type: number
       description: キャラ削除
+      tags:
+        - chara
   /search:
     get:
       summary: Your GET endpoint
@@ -180,7 +185,9 @@ paths:
             application/json:
               schema:
                 type: object
-                properties: {}
+                properties:
+                  success:
+                    type: string
       description: 画像を追加
       requestBody:
         content:
@@ -196,6 +203,8 @@ paths:
                   type: boolean
       security:
         - Token: []
+      tags:
+        - chara
     delete:
       summary: ''
       operationId: delete-chara-id-image
@@ -235,6 +244,8 @@ paths:
               properties:
                 id:
                   type: number
+      tags:
+        - chara
   /chara:
     get:
       summary: Your GET endpoint

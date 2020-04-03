@@ -22,4 +22,5 @@ services:
       - 9999:3000
     volumes:
       - ./src:/src
+    working_dir: /src
     command: bash -c "npm i && npm run start"

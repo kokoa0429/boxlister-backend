@@ -21,7 +21,7 @@ services:
     image: node:latest
     restart: always
     ports:
-      - 9999:3000
+      - 9876:3000
     volumes:
       - ./src:/src
     working_dir: /src

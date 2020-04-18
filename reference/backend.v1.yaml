@@ -205,47 +205,6 @@ paths:
         - Token: []
       tags:
         - chara
-    delete:
-      summary: ''
-      operationId: delete-chara-id-image
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  images:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        id:
-                          type: string
-                        url:
-                          type: string
-                        isPrivate:
-                          type:
-                            - string
-                            - boolean
-      description: 画像を削除
-      security:
-        - Token: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: number
-      tags:
-        - chara
   /chara:
     get:
       summary: Your GET endpoint
@@ -263,6 +222,35 @@ paths:
                     type: number
       operationId: get-chara
       description: キャラの数とか統計情報
+  '/chara/{id}/image/{imageId}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: imageId
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-chara-id-image-imageId
+    delete:
+      summary: ''
+      operationId: delete-chara-id-image-imageId
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: ''
+      operationId: post-chara-id-image-imageId
+      responses:
+        '200':
+          description: OK
 components:
   schemas:
     Char:

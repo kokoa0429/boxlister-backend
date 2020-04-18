@@ -1,9 +1,9 @@
 const user = {
-    user: 'iachara',
-    pwd: 'kokoacocoa',
+    user: 'boxlister',
+    pwd: 'password',
     roles: [{
         role: 'readWrite',
-        db: 'test'
+        db: 'boxlister'
     }]
 };
 

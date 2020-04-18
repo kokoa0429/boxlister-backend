@@ -6,9 +6,9 @@ const MongoClient = mongodb.MongoClient
 module.exports = class Database {
 
     connect () {
-        MongoClient.connect('mongodb://iachara:kokoacocoa@mongo:27017/test', (err, client) => {
+        MongoClient.connect('mongodb://boxlister:password@mongo:27017/boxlister', (err, client) => {
             if (err) throw err;
-            const db = client.db("test")
+            const db = client.db("boxlister")
             this.insertDocuments(db, () => {
                 client.close()
             })

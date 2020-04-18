@@ -8,7 +8,7 @@ db.connect()
 const app: express.Express = express()
 
 // CORSの許可
-app.use((req, res, next) => {
+app.use((req: any, res: any, next: any) => {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   next()

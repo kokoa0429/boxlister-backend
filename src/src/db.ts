@@ -1,4 +1,5 @@
 import mongodb = require("mongodb");
+import express = require('express')
 
 const assert = require('assert')
 const MongoClient = mongodb.MongoClient
@@ -16,23 +17,34 @@ module.exports = class Database {
         })
     }
 
+    getAllBoxes (resp: express.Response) {
+        mongoDB.collection("boxes").find().toArray((err,res) => {
+            resp.send(res)
+        })
+    }
 
-    insertDocuments(callback:any){
-        const documents = [
-            { a: 1 },
-            { a: 2 },
-            { a: 3 }
-        ]
-        // myDBデータベースのdocumentsコ レクション に対して
-        // ドキュメントを3つ追加します
-        mongoDB.collection('documents').insertMany(documents, (err:any, result:any) => {
-            // insert結果の確認
-            assert.equal(err, null)
-            assert.equal(3, result.result.n)
-            assert.equal(3, result.ops.length)
+    getBox (id : string, resp: express.Response) {
+        mongoDB.collection('boxes').findOne({ _id: new mongodb.ObjectID(id)},(err, res) => {
+            resp.send(res)
+        })
+    }
 
-            console.log("Inserted 3 documents into the collection")
-            callback(result)
+    setBox (id : string, obj: any, resp: express.Response) {
+        mongoDB.collection('boxes').updateOne({ _id: new mongodb.ObjectID(id)}, {$set: obj}, (err, res) => {
+            this.getAllBoxes(resp)
+        })
+    }
+
+    deleteBox (id : string, resp: express.Response) {
+        mongoDB.collection('boxes').remove({ _id: new mongodb.ObjectID(id)}, (err, res) => {
+            this.getAllBoxes(resp)
+        })
+    }
+
+    newBox (resp: express.Response){
+        const documents =  { data: { "name" : "test"} }
+        mongoDB.collection('boxes').insert(documents, (err:any, result:any) => {
+            this.getAllBoxes(resp)
         })
     }
 

@@ -3,264 +3,40 @@ info:
   title: backend
   version: '2.0'
   contact:
-    name: kokoa
-    url: 'https://support.iachara.com/'
-    email: admin@iachara.com
-  termsOfService: 'https://iachara.com/tos.html'
-  description: iachara backend
+    name: masuda yasuto
+    url: 'https://boxlister.ciebus.net/'
+  description: boxlister backend
 servers:
   - url: 'http://localhost:3000/api/v2'
 paths:
-  /user/register:
-    post:
-      summary: ''
-      operationId: post-user-register
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  '':
-                    type: string
-      description: ユーザ登録
-      tags:
-        - user
-  /user/auth:
-    post:
-      summary: ''
-      operationId: post-user-auth
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      tags:
-        - user
-      description: ユーザ認証
-  /user/refresh:
-    post:
-      summary: ''
-      operationId: post-user-refresh
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
-      tags:
-        - user
-      description: Tokenを再発行
-  '/chara/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags:
-        - chara
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  name:
-                    type: string
-      operationId: get-char-id
-      description: キャラ取得
-      security:
-        - Token: []
-    post:
-      summary: ''
-      operationId: post-char-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  returnChar:
-                    type: object
-      description: キャラ保存
-      tags:
-        - chara
-    delete:
-      summary: ''
-      operationId: delete-chara-id
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  id:
-                    type: number
-      description: キャラ削除
-      tags:
-        - chara
-  /search:
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses:
-        '200':
-          description: OK
-          headers: {}
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  type:
-                    type: string
-      operationId: get-search
-      parameters:
-        - schema:
-            type: string
-          in: query
-          name: type
-  '/chara/{id}/image':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags:
-        - chara
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  IconList:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: number
-                        name:
-                          type: string
-                        url:
-                          type: string
-                        isPrivate:
-                          type: boolean
-      operationId: get-chara-id-image
-      description: |
-        画像のリストを返す
-    post:
-      summary: ''
-      operationId: post-chara-id-image
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: string
-      description: 画像を追加
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                id:
-                  type: number
-                public:
-                  type: boolean
-      security:
-        - Token: []
-      tags:
-        - chara
-  /chara:
-    get:
-      summary: Your GET endpoint
-      tags:
-        - chara
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  count:
-                    type: number
-      operationId: get-chara
-      description: キャラの数とか統計情報
-  '/chara/{id}/image/{imageId}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-      - schema:
-          type: string
-        name: imageId
-        in: path
-        required: true
+  /box:
     get:
       summary: Your GET endpoint
       tags: []
       responses: {}
-      operationId: get-chara-id-image-imageId
-    delete:
+      operationId: get-box
+  '/box/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
       summary: ''
-      operationId: delete-chara-id-image-imageId
+      operationId: post-box-id
       responses:
         '200':
           description: OK
+  /box/new:
     post:
       summary: ''
-      operationId: post-chara-id-image-imageId
+      operationId: post-box-new
       responses:
         '200':
           description: OK
 components:
-  schemas:
-    Char:
-      title: Char
-      type: object
-      properties:
-        id:
-          type: string
-      x-examples:
-        example-1: {}
+  schemas: {}
   securitySchemes:
     Token:
       name: API Key

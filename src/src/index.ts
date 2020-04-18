@@ -20,13 +20,20 @@ app.use(express.urlencoded({ extended: true }))
 
 // GetとPostのルーティング
 const router: express.Router = express.Router()
-router.get('/api/getTest', (req:express.Request, res:express.Response) => {
+
+router.get('/box', (req:express.Request, res:express.Response) => {
+  db.insertDocuments()
   res.send(req.query)
 })
-router.post('/api/postTest', (req:express.Request, res:express.Response) => {
+
+router.post('/box/new', (req:express.Request, res:express.Response) => {
   res.send(req.body)
 })
-app.use(router)
 
-// 3000番ポートでAPIサーバ起動
+router.post('/box/{id}', (req:express.Request, res:express.Response) => {
+  res.send(req.query)
+})
+
+
+app.use(router)
 app.listen(3000,()=>{ console.log('Example app listening on port 3000!"!!') })

@@ -42,7 +42,21 @@ module.exports = class Database {
     }
 
     newBox (resp: express.Response){
-        const documents =  { data: { "name" : "test"} }
+        const documents =  
+        { 
+            data: { 
+                name : "新しい箱",
+                summary: "",
+                items: [
+                    {
+                        id: "76c89a",
+                        name: "",
+                        amount: 0
+                    }
+                ]
+            } 
+        }
+
         mongoDB.collection('boxes').insert(documents, (err:any, result:any) => {
             this.getAllBoxes(resp)
         })
